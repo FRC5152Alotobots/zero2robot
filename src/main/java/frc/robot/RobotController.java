@@ -34,11 +34,9 @@ public class RobotController {
     
         /** This function is called periodically during teleoperated mode. */
         public void teleopPeriodic() {
-            if (){
-                
-            }
+            //double speedController = joystick.getRightTriggerAxis();
             // drive the robot
-            mecanum.mvMecanum(joystick.getLeftY()*-1/2, joystick.getLeftX()/2, joystick.getRightX()/2);
+            mecanum.mvMecanum(joystick.getLeftY()*-1, joystick.getLeftX(), joystick.getRightX());
         }
         
 }

@@ -32,7 +32,7 @@ public class Mecanum {
         if (x_speed > 1.0 || x_speed < -1.0 || y_speed > 1.0 || y_speed < -1.0 || z_speed > 1.0 || z_speed < -1.0){
             throw new IllegalArgumentException("Speeds must be between -1.0 and 1.0");
         } else {
-            mecanumDrive.driveCartesian(x_speed, y_speed, z_speed);
+            mecanumDrive.driveCartesian(x_speed*MecanumConstants.driveSpeedFactor, y_speed*MecanumConstants.driveSpeedFactor, z_speed*MecanumConstants.rotationSpeedFactor);
 
         }
     }
