@@ -20,19 +20,25 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.Constants.DriveConstants;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
-  private final PWMSparkMax m_frontLeft = new PWMSparkMax(DriveConstants.kFrontLeftMotorPort);
-  private final PWMSparkMax m_rearLeft = new PWMSparkMax(DriveConstants.kRearLeftMotorPort);
-  private final PWMSparkMax m_frontRight = new PWMSparkMax(DriveConstants.kFrontRightMotorPort);
-  private final PWMSparkMax m_rearRight = new PWMSparkMax(DriveConstants.kRearRightMotorPort);
-
-  private final MecanumDrive m_drive =
-      new MecanumDrive(m_frontLeft, m_rearLeft, m_frontRight, m_rearRight);
-
-  // The front-left-side drive encoder
+/**
+ * *Declare Motors 
+ * @param [MotorPorts] configure to fit needs (you Might need to use the phoenix tuner)
+ */
+  private final WPI_VictorSPX m_frontLeft = new WPI_VictorSPX(DriveConstants.kFrontLeftMotorPort);
+  private final WPI_VictorSPX m_rearLeft = new WPI_VictorSPX(DriveConstants.kRearLeftMotorPort);
+  private final WPI_VictorSPX m_frontRight = new WPI_VictorSPX(DriveConstants.kFrontRightMotorPort);
+  private final WPI_VictorSPX m_rearRight = new WPI_VictorSPX(DriveConstants.kRearRightMotorPort);
+//initialize Mecanum Drive 
+  private final MecanumDrive m_drive = new MecanumDrive(m_frontLeft, m_rearLeft, m_frontRight, m_rearRight);
+//*Declare Encoders  
+  /** 
+   *  The front-left-side drive encoder @param k[Encoder]Reversed boolean if that encoder reversed or not 
+   * True = isReversed Flase = notReversed
+  */
   private final Encoder m_frontLeftEncoder =
       new Encoder(
           DriveConstants.kFrontLeftEncoderPorts[0],
@@ -59,7 +65,7 @@ public class DriveSubsystem extends SubsystemBase {
           DriveConstants.kRearRightEncoderPorts[0],
           DriveConstants.kRearRightEncoderPorts[1],
           DriveConstants.kRearRightEncoderReversed);
-
+//*Declare Gyro
   // The gyro sensor
   private final Gyro m_gyro = new ADXRS450_Gyro();
 
