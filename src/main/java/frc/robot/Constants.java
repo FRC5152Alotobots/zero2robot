@@ -2,6 +2,14 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+/** 
+ * * For better comments extention (Add above package)
+ * * importandt 
+ * ! Deprecitated 
+ * ? question 
+ * TODO:
+ * @param myParam (Used to define params)
+ */
 package frc.robot;
 
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
@@ -17,8 +25,10 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
+
 public final class Constants {
   public static final class DriveConstants {
+    // Constants for @params  
     public static final int kFrontLeftMotorPort = 0;
     public static final int kRearLeftMotorPort = 1;
     public static final int kFrontRightMotorPort = 2;
