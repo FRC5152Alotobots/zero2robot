@@ -7,7 +7,7 @@
  * ! Deprecitated 
  * ? question 
  * TODO:
- * @param myParam (Used to define params)
+ * @param myParam[Sqr_brackets_for_multipl_Sim_elements(likemotors)] (Used to define params)
  */
 package frc.robot.subsystems;
 
@@ -26,7 +26,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class DriveSubsystem extends SubsystemBase {
 /**
  * *Declare Motors 
- * @param [MotorPorts] configure to fit needs (you Might need to use the phoenix tuner)
+ * @param k[Motor]Port configure to fit needs 
+ * (You may need to use the phoenix tuner)
  */
   private final WPI_VictorSPX m_frontLeft = new WPI_VictorSPX(DriveConstants.kFrontLeftMotorPort);
   private final WPI_VictorSPX m_rearLeft = new WPI_VictorSPX(DriveConstants.kRearLeftMotorPort);
