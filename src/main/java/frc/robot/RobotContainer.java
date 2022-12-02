@@ -88,7 +88,7 @@ public class RobotContainer {
      * @param Button.kB.value Sets button input on xbox controller */    
     new JoystickButton(m_driverController, Button.kB.value)
         .whenPressed(new ButtonMoveReverse(m_robotDrive));
-     /**Drive Forward then Reverse when a button is clicked with a sequental command 
+     /**Drive Forward then Reverse when a button is clicked with a inline sequental command 
      * @param Button.kY.value Sets button input on xbox controller */
     new JoystickButton(m_driverController, Button.kY.value)
         .whenPressed(new SequentialCommandGroup(
