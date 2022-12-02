@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.subsystems.ButtonMove;
+import frc.robot.subsystems.ButtonMoveForward;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
@@ -77,7 +77,7 @@ public class RobotContainer {
         .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
         .whenReleased(() -> m_robotDrive.setMaxOutput(1));
     new JoystickButton(m_driverController, Button.kA.value)
-        .whenPressed(new ButtonMove(m_robotDrive));
+        .whenPressed(new ButtonMoveForward(m_robotDrive));
   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

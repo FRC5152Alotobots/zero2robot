@@ -7,11 +7,11 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class ButtonMove extends CommandBase {
+public class ButtonMoveForward extends CommandBase {
   private final DriveSubsystem m_drive;
   Timer endTimer = new Timer();
   /** Creates a new ButtonMove. */
-  public ButtonMove(DriveSubsystem drive) {
+  public ButtonMoveForward(DriveSubsystem drive) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_drive = drive;
     addRequirements(m_drive);
