@@ -72,16 +72,24 @@ public class RobotContainer {
    * {@link JoystickButton}.
    */
   private void configureButtonBindings() {
-   /**Drive at half speed when the right bumper is held 
+   
+    //* Binds Buttons/Joysticks to commands
+    /**Drive at half speed when the right bumper is held 
     * @param Button.kRightBumper.value Sets button imput on xbox controller
    */
     new JoystickButton(m_driverController, Button.kRightBumper.value)
         .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
         .whenReleased(() -> m_robotDrive.setMaxOutput(1));
+    /**Drive forward when a button is clicked
+     * @param Button.kA.value Sets button input on xbox controller */    
     new JoystickButton(m_driverController, Button.kA.value)
         .whenPressed(new ButtonMoveForward(m_robotDrive));
+    /**Drive Reverse when a button is clicked
+     * @param Button.kB.value Sets button input on xbox controller */    
     new JoystickButton(m_driverController, Button.kB.value)
         .whenPressed(new ButtonMoveReverse(m_robotDrive));
+     /**Drive Forward then Reverse when a button is clicked with a sequental command 
+     * @param Button.kY.value Sets button input on xbox controller */
     new JoystickButton(m_driverController, Button.kY.value)
         .whenPressed(new SequentialCommandGroup(
             new ButtonMoveForward(m_robotDrive), 
