@@ -25,10 +25,12 @@ import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.ButtonMoveForward;
+import frc.robot.subsystems.ButtonMoveReverse;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import java.util.List;
 
@@ -78,6 +80,13 @@ public class RobotContainer {
         .whenReleased(() -> m_robotDrive.setMaxOutput(1));
     new JoystickButton(m_driverController, Button.kA.value)
         .whenPressed(new ButtonMoveForward(m_robotDrive));
+    new JoystickButton(m_driverController, Button.kB.value)
+        .whenPressed(new ButtonMoveReverse(m_robotDrive));
+    new JoystickButton(m_driverController, Button.kY.value)
+        .whenPressed(new SequentialCommandGroup(
+            new ButtonMoveForward(m_robotDrive), 
+            new ButtonMoveReverse(m_robotDrive)
+        ));
   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
