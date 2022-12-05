@@ -24,9 +24,9 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.subsystems.ButtonMoveForward;
-import frc.robot.subsystems.ButtonMoveReverse;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Cmd_MoveForward;
+import frc.robot.subsystems.Cmd_MoveReverse;
+import frc.robot.subsystems.Subsys_MecanumDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -42,7 +42,7 @@ import java.util.List;
  */
 public class RobotContainer {
   // The robot's subsystems
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final Subsys_MecanumDrive m_robotDrive = new Subsys_MecanumDrive();
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort); 
@@ -58,7 +58,7 @@ public class RobotContainer {
         // hand, and turning controlled by the right.
         new RunCommand(
             () ->
-                m_robotDrive.drive(
+                m_robotDrive.MecanumDrive(
                     m_driverController.getLeftY()*0.3,
                     m_driverController.getRightX()*0.3,
                     m_driverController.getLeftX()*0.3,
@@ -83,17 +83,17 @@ public class RobotContainer {
     /**Drive forward when a button is clicked
      * @param Button.kA.value Sets button input on xbox controller */    
     new JoystickButton(m_driverController, Button.kA.value)
-        .whenPressed(new ButtonMoveForward(m_robotDrive));
+        .whenPressed(new Cmd_MoveForward(m_robotDrive));
     /**Drive Reverse when a button is clicked
      * @param Button.kB.value Sets button input on xbox controller */    
     new JoystickButton(m_driverController, Button.kB.value)
-        .whenPressed(new ButtonMoveReverse(m_robotDrive));
+        .whenPressed(new Cmd_MoveReverse(m_robotDrive));
      /**Drive Forward then Reverse when a button is clicked with a inline sequental command 
      * @param Button.kY.value Sets button input on xbox controller */
     new JoystickButton(m_driverController, Button.kY.value)
         .whenPressed(new SequentialCommandGroup(
-            new ButtonMoveForward(m_robotDrive), 
-            new ButtonMoveReverse(m_robotDrive)
+            new Cmd_MoveForward(m_robotDrive), 
+            new Cmd_MoveReverse(m_robotDrive)
         ));
   }
   /**
@@ -150,6 +150,6 @@ public class RobotContainer {
     m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    return mecanumControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
+    return mecanumControllerCommand.andThen(() -> m_robotDrive.MecanumDrive(0, 0, 0, false));
   }
 }
