@@ -12,8 +12,8 @@ public class Cmd_MoveForward extends CommandBase {
   //New timer 
   Timer m_class_endTimer__seconds = new Timer();
   //isDone vars
-  final boolean m_k_bool_isDone = true;
-  final boolean m_k_bool_isNotDone = false;
+  private static final boolean m_k_bool_isDone = true;
+  private static final boolean m_k_bool_isNotDone = false;
   //Constructor?
   public Cmd_MoveForward(Subsys_MecanumDrive drive) {
     // Use addRequirements() here to declare subsystem dependencies.

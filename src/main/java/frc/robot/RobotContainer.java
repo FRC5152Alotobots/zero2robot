@@ -45,7 +45,7 @@ public class RobotContainer {
   private final Subsys_MecanumDrive m_robotDrive = new Subsys_MecanumDrive();
 
   // The driver's controller
-  XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort); 
+  XboxController m_driverController = new XboxController(OIConstants.k_DriverControllerPort); 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -105,10 +105,10 @@ public class RobotContainer {
     // Create config for trajectory
     TrajectoryConfig config =
         new TrajectoryConfig(
-                AutoConstants.kMaxSpeedMetersPerSecond,
-                AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+                AutoConstants.k_MaxSpeedMetersPerSecond,
+                AutoConstants.k_MaxAccelerationMetersPerSecondSquared)
             // Add kinematics to ensure max speed is actually obeyed
-            .setKinematics(DriveConstants.kDriveKinematics);
+            .setKinematics(DriveConstants.k_DriveKinematics);
 
     // An example trajectory to follow.  All units in meters.
     Trajectory exampleTrajectory =
@@ -125,23 +125,23 @@ public class RobotContainer {
         new MecanumControllerCommand(
             exampleTrajectory,
             m_robotDrive::getPose,
-            DriveConstants.kFeedforward,
-            DriveConstants.kDriveKinematics,
+            DriveConstants.k_Feedforward,
+            DriveConstants.k_DriveKinematics,
 
             // Position contollers
-            new PIDController(AutoConstants.kPXController, 0, 0),
-            new PIDController(AutoConstants.kPYController, 0, 0),
+            new PIDController(AutoConstants.k_PXController, 0, 0),
+            new PIDController(AutoConstants.k_PYController, 0, 0),
             new ProfiledPIDController(
-                AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints),
+                AutoConstants.k_PThetaController, 0, 0, AutoConstants.kThetaControllerConstraints),
 
             // Needed for normalizing wheel speeds
-            AutoConstants.kMaxSpeedMetersPerSecond,
+            AutoConstants.k_MaxSpeedMetersPerSecond,
 
             // Velocity PID's
-            new PIDController(DriveConstants.kPFrontLeftVel, 0, 0),
-            new PIDController(DriveConstants.kPRearLeftVel, 0, 0),
-            new PIDController(DriveConstants.kPFrontRightVel, 0, 0),
-            new PIDController(DriveConstants.kPRearRightVel, 0, 0),
+            new PIDController(DriveConstants.k_PFrontLeftVel, 0, 0),
+            new PIDController(DriveConstants.k_PRearLeftVel, 0, 0),
+            new PIDController(DriveConstants.k_PFrontRightVel, 0, 0),
+            new PIDController(DriveConstants.k_PRearRightVel, 0, 0),
             m_robotDrive::getCurrentWheelSpeeds,
             m_robotDrive::setDriveMotorControllersVolts, // Consumer for the output motor voltages
             m_robotDrive);
