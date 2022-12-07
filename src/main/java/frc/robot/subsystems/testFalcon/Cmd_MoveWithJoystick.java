@@ -8,10 +8,11 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Cmd_MoveWithJoystick extends CommandBase {
-  /** Creates a new Cmd_MoveWithJoystick. */
+public class Cmd_MoveWithJoystick extends CommandBase {  
   private final testFalconSys m_FalconSys;
   private DoubleSupplier joyValue;
+
+
   public Cmd_MoveWithJoystick( testFalconSys falconSys, DoubleSupplier joyValue) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_FalconSys = falconSys;
