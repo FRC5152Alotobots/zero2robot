@@ -24,11 +24,13 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
-import frc.robot.subsystems.ButtonMove;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Cmd_MoveForward;
+import frc.robot.subsystems.Cmd_MoveReverse;
+import frc.robot.subsystems.Subsys_MecanumDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import java.util.List;
 
@@ -40,10 +42,10 @@ import java.util.List;
  */
 public class RobotContainer {
   // The robot's subsystems
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  private final Subsys_MecanumDrive m_robotDrive = new Subsys_MecanumDrive();
 
   // The driver's controller
-  XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort); 
+  XboxController m_driverController = new XboxController(OIConstants.k_DriverControllerPort); 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -56,7 +58,7 @@ public class RobotContainer {
         // hand, and turning controlled by the right.
         new RunCommand(
             () ->
-                m_robotDrive.drive(
+                m_robotDrive.MecanumDrive(
                     m_driverController.getLeftY()*0.3,
                     m_driverController.getRightX()*0.3,
                     m_driverController.getLeftX()*0.3,
@@ -70,14 +72,29 @@ public class RobotContainer {
    * {@link JoystickButton}.
    */
   private void configureButtonBindings() {
-   /**Drive at half speed when the right bumper is held 
+   
+    //* Binds Buttons/Joysticks to commands
+    /**Drive at half speed when the right bumper is held 
     * @param Button.kRightBumper.value Sets button imput on xbox controller
    */
     new JoystickButton(m_driverController, Button.kRightBumper.value)
         .whenPressed(() -> m_robotDrive.setMaxOutput(0.5))
         .whenReleased(() -> m_robotDrive.setMaxOutput(1));
+    /**Drive forward when a button is clicked
+     * @param Button.kA.value Sets button input on xbox controller */    
     new JoystickButton(m_driverController, Button.kA.value)
-        .whenPressed(new ButtonMove(m_robotDrive));
+        .whenPressed(new Cmd_MoveForward(m_robotDrive));
+    /**Drive Reverse when a button is clicked
+     * @param Button.kB.value Sets button input on xbox controller */    
+    new JoystickButton(m_driverController, Button.kB.value)
+        .whenPressed(new Cmd_MoveReverse(m_robotDrive));
+     /**Drive Forward then Reverse when a button is clicked with a inline sequental command 
+     * @param Button.kY.value Sets button input on xbox controller */
+    new JoystickButton(m_driverController, Button.kY.value)
+        .whenPressed(new SequentialCommandGroup(
+            new Cmd_MoveForward(m_robotDrive), 
+            new Cmd_MoveReverse(m_robotDrive)
+        ));
   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
@@ -88,10 +105,10 @@ public class RobotContainer {
     // Create config for trajectory
     TrajectoryConfig config =
         new TrajectoryConfig(
-                AutoConstants.kMaxSpeedMetersPerSecond,
-                AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+                AutoConstants.k_MaxSpeedMetersPerSecond,
+                AutoConstants.k_MaxAccelerationMetersPerSecondSquared)
             // Add kinematics to ensure max speed is actually obeyed
-            .setKinematics(DriveConstants.kDriveKinematics);
+            .setKinematics(DriveConstants.k_DriveKinematics);
 
     // An example trajectory to follow.  All units in meters.
     Trajectory exampleTrajectory =
@@ -108,23 +125,23 @@ public class RobotContainer {
         new MecanumControllerCommand(
             exampleTrajectory,
             m_robotDrive::getPose,
-            DriveConstants.kFeedforward,
-            DriveConstants.kDriveKinematics,
+            DriveConstants.k_Feedforward,
+            DriveConstants.k_DriveKinematics,
 
             // Position contollers
-            new PIDController(AutoConstants.kPXController, 0, 0),
-            new PIDController(AutoConstants.kPYController, 0, 0),
+            new PIDController(AutoConstants.k_PXController, 0, 0),
+            new PIDController(AutoConstants.k_PYController, 0, 0),
             new ProfiledPIDController(
-                AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints),
+                AutoConstants.k_PThetaController, 0, 0, AutoConstants.kThetaControllerConstraints),
 
             // Needed for normalizing wheel speeds
-            AutoConstants.kMaxSpeedMetersPerSecond,
+            AutoConstants.k_MaxSpeedMetersPerSecond,
 
             // Velocity PID's
-            new PIDController(DriveConstants.kPFrontLeftVel, 0, 0),
-            new PIDController(DriveConstants.kPRearLeftVel, 0, 0),
-            new PIDController(DriveConstants.kPFrontRightVel, 0, 0),
-            new PIDController(DriveConstants.kPRearRightVel, 0, 0),
+            new PIDController(DriveConstants.k_PFrontLeftVel, 0, 0),
+            new PIDController(DriveConstants.k_PRearLeftVel, 0, 0),
+            new PIDController(DriveConstants.k_PFrontRightVel, 0, 0),
+            new PIDController(DriveConstants.k_PRearRightVel, 0, 0),
             m_robotDrive::getCurrentWheelSpeeds,
             m_robotDrive::setDriveMotorControllersVolts, // Consumer for the output motor voltages
             m_robotDrive);
@@ -133,6 +150,6 @@ public class RobotContainer {
     m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
-    return mecanumControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
+    return mecanumControllerCommand.andThen(() -> m_robotDrive.MecanumDrive(0, 0, 0, false));
   }
 }
