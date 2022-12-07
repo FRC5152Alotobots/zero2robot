@@ -10,11 +10,11 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class testFalconSys extends SubsystemBase {
-  private final TalonFX m_testFalcon = new TalonFX(Constants.DriveConstants.k_TestMotor);
+public class Subsys_FalconTest extends SubsystemBase {
+  private final TalonFX m_testFalconMotor = new TalonFX(Constants.DriveConstants.k_TestMotor);
 
   /** Creates a new testFalconSys. */
-  public testFalconSys() {
+  public Subsys_FalconTest() {
   }
 
   @Override
@@ -22,7 +22,7 @@ public class testFalconSys extends SubsystemBase {
   }
 
   public void setPrecentOutput(double precent) {
-    m_testFalcon.set(ControlMode.PercentOutput, precent);
+    m_testFalconMotor.set(ControlMode.PercentOutput, precent);
   }
 
 }

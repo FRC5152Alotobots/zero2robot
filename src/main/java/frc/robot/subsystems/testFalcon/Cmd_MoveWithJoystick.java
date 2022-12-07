@@ -9,13 +9,13 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Cmd_MoveWithJoystick extends CommandBase {  
-  private final testFalconSys m_FalconSys;
+  private final Subsys_FalconTest m_FalconSys;
   private DoubleSupplier joyValue;
 
 
-  public Cmd_MoveWithJoystick( testFalconSys falconSys, DoubleSupplier joyValue) {
+  public Cmd_MoveWithJoystick( Subsys_FalconTest FalconSys, DoubleSupplier joyValue) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_FalconSys = falconSys;
+    m_FalconSys = FalconSys;
     addRequirements(m_FalconSys);
     this.joyValue = joyValue;
   }

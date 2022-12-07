@@ -29,7 +29,7 @@ import frc.robot.subsystems.Cmd_MoveForward;
 import frc.robot.subsystems.Cmd_MoveReverse;
 import frc.robot.subsystems.Subsys_MecanumDrive;
 import frc.robot.subsystems.testFalcon.Cmd_MoveWithJoystick;
-import frc.robot.subsystems.testFalcon.testFalconSys;
+import frc.robot.subsystems.testFalcon.Subsys_FalconTest;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -46,7 +46,7 @@ import java.util.List;
 public class RobotContainer {
   // The robot's subsystems
   private final Subsys_MecanumDrive m_robotDrive = new Subsys_MecanumDrive();
-    private final testFalconSys m_testFalcon = new testFalconSys(); //TEST NOT IN PROD
+    private final Subsys_FalconTest m_testFalcon = new Subsys_FalconTest(); //TEST NOT IN PROD
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.k_DriverControllerPort); 
   Joystick m_Joystick = new Joystick(OIConstants.k_JoyControllerPort);
