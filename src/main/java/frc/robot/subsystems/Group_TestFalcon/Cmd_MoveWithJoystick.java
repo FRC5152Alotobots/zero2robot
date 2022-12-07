@@ -9,10 +9,14 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Cmd_MoveWithJoystick extends CommandBase {  
+  //Declare Variables 
   private final Subsys_FalconTest m_FalconSys;
   private DoubleSupplier joyValue;
 
-
+  /**Constructor 
+   * @param TestFalconSubsystem
+   * @param Joystick_DS 
+   */
   public Cmd_MoveWithJoystick( Subsys_FalconTest FalconSys, DoubleSupplier joyValue) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_FalconSys = FalconSys;

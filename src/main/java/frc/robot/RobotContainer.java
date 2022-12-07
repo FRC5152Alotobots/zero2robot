@@ -55,11 +55,10 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     
-    // Configure default commands
+    //* Configure default commands
     // Set the default drive command to split-stick arcade drive
     m_robotDrive.setDefaultCommand(
-        // A split-stick arcade command, with forward/backward controlled by the left
-        // hand, and turning controlled by the right.
+    //Default MecanumDrive command
         new RunCommand(
             () ->
                 m_robotDrive.MecanumDrive(
@@ -68,6 +67,7 @@ public class RobotContainer {
                     m_driverController.getLeftX()*0.3,
                     false),
             m_robotDrive));
+    //Default TestFalcon Command 
     m_testFalcon.setDefaultCommand(
         new Cmd_MoveWithJoystick(
             m_testFalcon, 

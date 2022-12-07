@@ -14,7 +14,9 @@ public class Cmd_MoveReverse extends CommandBase {
   //isDone vars
   private static final boolean m_k_bool_isDone = true;
   private static final boolean m_k_bool_isNotDone = false;
-  /** Creates a new ButtonMoveReverse. */
+  /**Constructor
+  * @param DriveSubsystem
+  */
   public Cmd_MoveReverse(Subsys_MecanumDrive drive) {
     // Use addRequirements() here to declare subsystem dependencies.
     i_MecanumDrive = drive;
