@@ -19,6 +19,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.AutoConstants;
@@ -27,6 +28,8 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.Cmd_MoveForward;
 import frc.robot.subsystems.Cmd_MoveReverse;
 import frc.robot.subsystems.Subsys_MecanumDrive;
+import frc.robot.subsystems.testFalcon.Cmd_MoveWithJoystick;
+import frc.robot.subsystems.testFalcon.testFalconSys;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -43,9 +46,10 @@ import java.util.List;
 public class RobotContainer {
   // The robot's subsystems
   private final Subsys_MecanumDrive m_robotDrive = new Subsys_MecanumDrive();
-
+    private final testFalconSys m_testFalcon = new testFalconSys(); //TEST NOT IN PROD
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.k_DriverControllerPort); 
+  Joystick m_Joystick = new Joystick(OIConstants.k_JoyControllerPort);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -64,8 +68,13 @@ public class RobotContainer {
                     m_driverController.getLeftX()*0.3,
                     false),
             m_robotDrive));
+    m_testFalcon.setDefaultCommand(
+        new Cmd_MoveWithJoystick(
+            m_testFalcon, 
+            () -> m_Joystick.getZ()
+        ));
   }
-  /**
+  /**.
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link edu.wpi.first.wpilibj.GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then calling passing it to a
