@@ -33,6 +33,7 @@ public final class Constants {
     public static final int k_RearLeftMotorPort = 4;
     public static final int k_FrontRightMotorPort = 1;
     public static final int k_RearRightMotorPort = 2;
+    public static final int k_TestMotor = 6;
 
     public static final int[] k_FrontLeftEncoderPorts = new int[] {0, 1};
     public static final int[] k_RearLeftEncoderPorts = new int[] {2, 3};
