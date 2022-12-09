@@ -25,4 +25,8 @@ public class Subsys_FalconTest extends SubsystemBase {
     m_testFalconMotor.set(ControlMode.PercentOutput, precent);
   }
 
+  public void setPosition(double position) {
+    m_testFalconMotor.set(ControlMode.Position, position);
+  }
+
 }

@@ -28,6 +28,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.subsystems.Group_DriveSubsystem.Cmd_MoveForward;
 import frc.robot.subsystems.Group_DriveSubsystem.Cmd_MoveReverse;
 import frc.robot.subsystems.Group_DriveSubsystem.Subsys_MecanumDrive;
+import frc.robot.subsystems.Group_TestFalcon.Cmd_MoveToPosition;
 import frc.robot.subsystems.Group_TestFalcon.Cmd_MoveWithJoystick;
 import frc.robot.subsystems.Group_TestFalcon.Subsys_FalconTest;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -104,6 +105,10 @@ public class RobotContainer {
             new Cmd_MoveForward(m_robotDrive), 
             new Cmd_MoveReverse(m_robotDrive)
         ));
+    new JoystickButton(m_driverController, Button.kX.value)
+        .whenPressed(
+            new Cmd_MoveToPosition(m_testFalcon, 180)
+            );
   }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
