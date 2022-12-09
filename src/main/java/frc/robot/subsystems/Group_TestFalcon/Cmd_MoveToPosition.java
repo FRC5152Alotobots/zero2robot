@@ -12,7 +12,7 @@ public class Cmd_MoveToPosition extends CommandBase {
 
   /**Constructor 
    * @param TestFalconSubsystem
-   * @param isDpadUp 
+   * @param position
    */
   public Cmd_MoveToPosition( Subsys_FalconTest FalconSys, int position) {
     // Use addRequirements() here to declare subsystem dependencies.
