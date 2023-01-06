@@ -6,15 +6,17 @@ package frc.robot.subsystems.Group_TestFalcon;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Cmd_MoveToPosition extends CommandBase {  
-  //Declare Variables 
+public class Cmd_MoveToPosition extends CommandBase {
+  // Declare Variables
   private final Subsys_FalconTest m_FalconSys;
 
-  /**Constructor 
+  /**
+   * Constructor
+   * 
    * @param TestFalconSubsystem
    * @param position
    */
-  public Cmd_MoveToPosition( Subsys_FalconTest FalconSys, int position) {
+  public Cmd_MoveToPosition(Subsys_FalconTest FalconSys, int position) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_FalconSys = FalconSys;
     addRequirements(m_FalconSys);
@@ -35,7 +37,8 @@ public class Cmd_MoveToPosition extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override

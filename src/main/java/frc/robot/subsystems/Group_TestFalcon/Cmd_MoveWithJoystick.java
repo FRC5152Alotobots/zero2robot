@@ -8,16 +8,18 @@ import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Cmd_MoveWithJoystick extends CommandBase {  
-  //Declare Variables 
+public class Cmd_MoveWithJoystick extends CommandBase {
+  // Declare Variables
   private final Subsys_FalconTest m_FalconSys;
   private DoubleSupplier joyValue;
 
-  /**Constructor 
+  /**
+   * Constructor
+   * 
    * @param TestFalconSubsystem
-   * @param Joystick_DS 
+   * @param Joystick_DS
    */
-  public Cmd_MoveWithJoystick( Subsys_FalconTest FalconSys, DoubleSupplier joyValue) {
+  public Cmd_MoveWithJoystick(Subsys_FalconTest FalconSys, DoubleSupplier joyValue) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_FalconSys = FalconSys;
     addRequirements(m_FalconSys);
@@ -38,7 +40,8 @@ public class Cmd_MoveWithJoystick extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override

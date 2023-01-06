@@ -1,0 +1,24 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Subsys_FalconTest": "Subsystem",
+      "/LiveWindow/Subsys_MecanumDrive": "Subsystem",
+      "/LiveWindow/Ungrouped/ADXRS450_Gyro[0]": "Gyro",
+      "/LiveWindow/Ungrouped/MecanumDrive[1]": "MecanumDrive",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
+    },
+    "windows": {
+      "/LiveWindow/Subsys_FalconTest": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/LiveWindow/Subsys_MecanumDrive": {
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  }
+}

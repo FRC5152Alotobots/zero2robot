@@ -9,14 +9,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Cmd_MoveReverse extends CommandBase {
   private final Subsys_MecanumDrive i_MecanumDrive;
-  //New timer 
+  // New timer
   Timer m_class_endTimer__seconds = new Timer();
-  //isDone vars
+  // isDone vars
   private static final boolean m_k_bool_isDone = true;
   private static final boolean m_k_bool_isNotDone = false;
-  /**Constructor
-  * @param DriveSubsystem
-  */
+
+  /**
+   * Constructor
+   * 
+   * @param DriveSubsystem
+   */
   public Cmd_MoveReverse(Subsys_MecanumDrive drive) {
     // Use addRequirements() here to declare subsystem dependencies.
     i_MecanumDrive = drive;
@@ -26,7 +29,7 @@ public class Cmd_MoveReverse extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //reset timer and start
+    // reset timer and start
     m_class_endTimer__seconds.reset();
     m_class_endTimer__seconds.start();
   }
@@ -34,13 +37,14 @@ public class Cmd_MoveReverse extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-     //move robot forward
-     i_MecanumDrive.MecanumDrive(-0.3, 0, 0,false);
+    // move robot forward
+    i_MecanumDrive.MecanumDrive(-0.3, 0, 0, false);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override

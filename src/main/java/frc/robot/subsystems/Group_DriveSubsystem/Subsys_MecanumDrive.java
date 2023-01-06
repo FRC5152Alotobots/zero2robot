@@ -24,55 +24,53 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Subsys_MecanumDrive extends SubsystemBase {
-/**
- * *Declare Motors 
- * @param k[Motor]Port configure to fit needs 
- * (You may need to use the phoenix tuner)
- */
+  /**
+   * *Declare Motors
+   * 
+   * @param k[Motor]Port configure to fit needs
+   *                     (You may need to use the phoenix tuner)
+   */
   private final WPI_VictorSPX m_frontLeftMotor = new WPI_VictorSPX(DriveConstants.k_FrontLeftMotorPort);
   private final WPI_VictorSPX m_rearLeftMotor = new WPI_VictorSPX(DriveConstants.k_RearLeftMotorPort);
   private final WPI_VictorSPX m_frontRightMotor = new WPI_VictorSPX(DriveConstants.k_FrontRightMotorPort);
   private final WPI_VictorSPX m_rearRightMotor = new WPI_VictorSPX(DriveConstants.k_RearRightMotorPort);
-//initialize Mecanum Drive 
-  private final MecanumDrive m_MecanumDrive = new MecanumDrive(m_frontLeftMotor, m_rearLeftMotor, m_frontRightMotor, m_rearRightMotor);
-//*Declare Encoders  
-  /** 
-   *  The front-left-side drive encoder @param k[Encoder]Reversed boolean if that encoder reversed or not 
+  // initialize Mecanum Drive
+  private final MecanumDrive m_MecanumDrive = new MecanumDrive(m_frontLeftMotor, m_rearLeftMotor, m_frontRightMotor,
+      m_rearRightMotor);
+  // *Declare Encoders
+  /**
+   * The front-left-side drive encoder @param k[Encoder]Reversed boolean if that
+   * encoder reversed or not
    * True = isReversed Flase = notReversed
-  */
-  private final Encoder m_frontLeftEncoder =
-      new Encoder(
-          DriveConstants.k_FrontLeftEncoderPorts[0],
-          DriveConstants.k_FrontLeftEncoderPorts[1],
-          DriveConstants.k_FrontLeftEncoderReversed);
+   */
+  private final Encoder m_frontLeftEncoder = new Encoder(
+      DriveConstants.k_FrontLeftEncoderPorts[0],
+      DriveConstants.k_FrontLeftEncoderPorts[1],
+      DriveConstants.k_FrontLeftEncoderReversed);
 
   // The rear-left-side drive encoder
-  private final Encoder m_rearLeftEncoder =
-      new Encoder(
-          DriveConstants.k_RearLeftEncoderPorts[0],
-          DriveConstants.k_RearLeftEncoderPorts[1],
-          DriveConstants.k_RearLeftEncoderReversed);
+  private final Encoder m_rearLeftEncoder = new Encoder(
+      DriveConstants.k_RearLeftEncoderPorts[0],
+      DriveConstants.k_RearLeftEncoderPorts[1],
+      DriveConstants.k_RearLeftEncoderReversed);
 
   // The front-right--side drive encoder
-  private final Encoder m_frontRightEncoder =
-      new Encoder(
-          DriveConstants.k_FrontRightEncoderPorts[0],
-          DriveConstants.k_FrontRightEncoderPorts[1],
-          DriveConstants.k_FrontRightEncoderReversed);
+  private final Encoder m_frontRightEncoder = new Encoder(
+      DriveConstants.k_FrontRightEncoderPorts[0],
+      DriveConstants.k_FrontRightEncoderPorts[1],
+      DriveConstants.k_FrontRightEncoderReversed);
 
   // The rear-right-side drive encoder
-  private final Encoder m_rearRightEncoder =
-      new Encoder(
-          DriveConstants.k_RearRightEncoderPorts[0],
-          DriveConstants.k_RearRightEncoderPorts[1],
-          DriveConstants.k_RearRightEncoderReversed);
-//*Declare Gyro
+  private final Encoder m_rearRightEncoder = new Encoder(
+      DriveConstants.k_RearRightEncoderPorts[0],
+      DriveConstants.k_RearRightEncoderPorts[1],
+      DriveConstants.k_RearRightEncoderReversed);
+  // *Declare Gyro
   // The gyro sensor
   private final Gyro m_gyro = new ADXRS450_Gyro();
 
   // Odometry class for tracking robot pose
-  MecanumDriveOdometry m_odometry =
-      new MecanumDriveOdometry(DriveConstants.k_DriveKinematics, m_gyro.getRotation2d());
+  MecanumDriveOdometry m_odometry = new MecanumDriveOdometry(DriveConstants.k_DriveKinematics, m_gyro.getRotation2d());
 
   /** Creates a new DriveSubsystem. */
   public Subsys_MecanumDrive() {
@@ -118,13 +116,16 @@ public class Subsys_MecanumDrive extends SubsystemBase {
   }
 
   /**
-   * Drives the robot at given x, y and theta speeds. Speeds range from [-1, 1] and the linear
+   * Drives the robot at given x, y and theta speeds. Speeds range from [-1, 1]
+   * and the linear
    * speeds have no effect on the angular speed.
    *
-   * @param xSpeed Speed of the robot in the x direction (forward/backwards).
-   * @param ySpeed Speed of the robot in the y direction (sideways).
-   * @param rot Angular rate of the robot.
-   * @param fieldRelative Whether the provided x and y speeds are relative to the field.
+   * @param xSpeed        Speed of the robot in the x direction
+   *                      (forward/backwards).
+   * @param ySpeed        Speed of the robot in the y direction (sideways).
+   * @param rot           Angular rate of the robot.
+   * @param fieldRelative Whether the provided x and y speeds are relative to the
+   *                      field.
    */
   @SuppressWarnings("ParameterName")
   public void MecanumDrive(double xSpeed, double ySpeed, double rot, boolean fieldRelative) {
@@ -201,7 +202,8 @@ public class Subsys_MecanumDrive extends SubsystemBase {
   }
 
   /**
-   * Sets the max output of the drive. Useful for scaling the drive to drive more slowly.
+   * Sets the max output of the drive. Useful for scaling the drive to drive more
+   * slowly.
    *
    * @param maxOutput the maximum output to which the drive will be constrained
    */
